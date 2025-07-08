@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jadual Peperiksaan 2025</title>
+  <style>
+    :root {
+      --primary: #007bff;
+      --light: #f4f8fc;
+      --danger: #dc3545;
+      --text: #333;
+      --bg: #e9f1fa;
+    }
+
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: var(--primary);
+      margin-bottom: 30px;
+    }
+
+    .table-container {
+      max-width: 900px;
+      margin: auto;
+      overflow-x: auto;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 16px;
+    }
+
+    th, td {
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: var(--primary);
+      color: white;
+      font-weight: bold;
+    }
+
+    tr:nth-child(even) {
+      background-color: var(--light);
+    }
+
+    .countdown {
+      font-weight: bold;
+      color: var(--danger);
+    }
+
+    @media (max-width: 600px) {
+      table, thead, tbody, th, td, tr {
+        font-size: 14px;
+      }
+    }
+    footer{
+      padding: 20px;
+      margin: 0;
+      background-color: #545454;
+      color:white;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      left:0;
+      text-align: center;
+      font-family: courier;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>CEEE211 SEM 2</h1>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Tarikh</th>
+          <th>Kod Subjek</th>
+          <th>Masa</th>
+          <th>Countdown</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>24/07/2025 (Khamis)</td>
+          <td>ETL453</td>
+          <td>9:00 am – 12:00 pm</td>
+          <td class="countdown" id="countdown1"></td>
+        </tr>
+        <tr>
+          <td>03/08/2025 (Ahad)</td>
+          <td>ETT451</td>
+          <td>2:15 pm – 5:15 pm</td>
+          <td class="countdown" id="countdown2"></td>
+        </tr>
+        <tr>
+          <td>05/08/2025 (Selasa)</td>
+          <td>MAT450</td>
+          <td>2:15 pm – 5:15 pm</td>
+          <td class="countdown" id="countdown3"></td>
+        </tr>
+        <tr>
+          <td>07/08/2025 (Khamis)</td>
+          <td>ETS452</td>
+          <td>9:00 am – 12:00 pm</td>
+          <td class="countdown" id="countdown4"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+<footer>
+  <span>Powered by Daniel Hakim</span>
+</footer>
+  <script>
+    function startCountdown(id, dateString) {
+      const el = document.getElementById(id);
+      const target = new Date(dateString).getTime();
+
+      const interval = setInterval(() => {
+        const now = new Date().getTime();
+        const distance = target - now;
+
+        if (distance < 0) {
+          clearInterval(interval);
+          el.innerHTML = "Sedang Berlangsung / Tamat";
+          return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        el.innerHTML = `${days}h ${hours}j ${minutes}m ${seconds}s`;
+      }, 1000);
+    }
+
+    // Waktu Malaysia (GMT+8)
+    startCountdown("countdown1", "2025-07-24T09:00:00+08:00");
+    startCountdown("countdown2", "2025-08-03T14:15:00+08:00");
+    startCountdown("countdown3", "2025-08-05T14:15:00+08:00");
+    startCountdown("countdown4", "2025-08-07T09:00:00+08:00");
+  </script>
+
+</body>
+</html>
