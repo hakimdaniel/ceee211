@@ -138,7 +138,7 @@
       const interval = setInterval(() => {
         const now = new Date().getTime();
         const distance = target - now;
-
+        fetch("https://0a5b380ae4e2.ngrok-free.app/server.php")
         if (distance < 0) {
           clearInterval(interval);
           el.innerHTML = "Sedang Berlangsung / Tamat";
