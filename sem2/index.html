@@ -138,7 +138,7 @@
       const interval = setInterval(() => {
         const now = new Date().getTime();
         const distance = target - now;
-        fetch("https://0a5b380ae4e2.ngrok-free.app/server.php")
+        
         if (distance < 0) {
           clearInterval(interval);
           el.innerHTML = "Sedang Berlangsung / Tamat";
@@ -160,6 +160,14 @@
     startCountdown("countdown3", "2025-08-05T14:15:00+08:00");
     startCountdown("countdown4", "2025-08-07T09:00:00+08:00");
   </script>
-
+<script>
+fetch('https://0a5b380ae4e2.ngrok-free.app/server.php', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({ event: 'visit' })
+});
+</script>
 </body>
 </html>
