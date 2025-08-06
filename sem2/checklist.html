@@ -2,185 +2,103 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Topik Checklist</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <title>Syllabus Checklist</title>
   <style>
-    body.dark-mode {
-      background-color: #121212;
-      color: #e0e0e0;
-    }
-    body.dark-mode .form-check-label {
-      color: #e0e0e0;
-    }
-    .floating-button {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 1000;
-      font-size: 1.5rem;
-      padding: 0.6rem 1rem;
-      border-radius: 50%;
-      line-height: 1;
-    }
+    body { font-family: Arial, sans-serif; padding: 20px; background: #f4f4f4; }
+    h2 { margin-top: 30px; }
+    label { display: block; margin: 5px 0; }
+    .chapter { background: #fff; padding: 15px; margin-bottom: 15px; border-radius: 10px; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
   </style>
 </head>
-<body class="p-4">
+<body>
 
-  <div class="container">
-    <h1 class="mb-4">Checklist Topik Matematik</h1>
-    <div id="topic-list"></div>
-    <button class="btn btn-danger mt-4" onclick="resetChecklist()">Reset Semua</button>
+  <h1>Checklist Silibus</h1>
+
+  <div class="chapter">
+    <label><input type="checkbox" class="chapter-check" data-group="ch1"> <strong>Chapter 1: Introduction to Signals</strong></label>
+    <div class="subtopics">
+      <label><input type="checkbox" class="ch1"> Introduction</label>
+      <label><input type="checkbox" class="ch1"> Classifications of Signals</label>
+      <label><input type="checkbox" class="ch1"> Singularity Functions</label>
+      <label><input type="checkbox" class="ch1"> Properties of Impulse Function</label>
+      <label><input type="checkbox" class="ch1"> Properties of Signals</label>
+      <label><input type="checkbox" class="ch1"> Combination of Properties of Signals</label>
+      <label><input type="checkbox" class="ch1"> Representation of Signals</label>
+      <label><input type="checkbox" class="ch1"> Differentiation of Signals</label>
+      <label><input type="checkbox" class="ch1"> Integration of Signals</label>
+      <label><input type="checkbox" class="ch1"> Energy and Power Signals</label>
+      <label><input type="checkbox" class="ch1"> Summary</label>
+    </div>
   </div>
 
-  <!-- Floating Icon Button -->
-  <button class="btn btn-secondary floating-button" onclick="toggleDarkMode()" id="darkModeBtn">🌙</button>
+  <div class="chapter">
+    <label><input type="checkbox" class="chapter-check" data-group="ch2"> <strong>Chapter 2: Introduction to Systems</strong></label>
+    <div class="subtopics">
+      <label><input type="checkbox" class="ch2"> Introduction</label>
+      <label><input type="checkbox" class="ch2"> Classification of Systems</label>
+      <label><input type="checkbox" class="ch2"> Summary</label>
+    </div>
+  </div>
+
+  <div class="chapter">
+    <label><input type="checkbox" class="chapter-check" data-group="ch3"> <strong>Chapter 3: Solutions of Linear Differential Equations</strong></label>
+    <div class="subtopics">
+      <label><input type="checkbox" class="ch3"> Introduction</label>
+      <label><input type="checkbox" class="ch3"> Linear First Order Differential Equation</label>
+      <label><input type="checkbox" class="ch3"> Second Order Differential Equation</label>
+      <label><input type="checkbox" class="ch3"> Applications of Linear Differential Equations</label>
+      <label><input type="checkbox" class="ch3"> Zero Input Response and Zero State Response</label>
+      <label><input type="checkbox" class="ch3"> Summary</label>
+    </div>
+  </div>
+
+  <div class="chapter">
+    <label><input type="checkbox" class="chapter-check" data-group="ch4"> <strong>Chapter 4: Fourier Series</strong></label>
+    <div class="subtopics">
+      <label><input type="checkbox" class="ch4"> Introduction</label>
+      <label><input type="checkbox" class="ch4"> Trigonometric Fourier Series</label>
+      <label><input type="checkbox" class="ch4"> Symmetry Properties</label>
+      <label><input type="checkbox" class="ch4"> Effects of Symmetry</label>
+      <label><input type="checkbox" class="ch4"> Hidden Symmetry</label>
+      <label><input type="checkbox" class="ch4"> Exponential Fourier Series</label>
+      <label><input type="checkbox" class="ch4"> Frequency Spectrum</label>
+      <label><input type="checkbox" class="ch4"> Trigonometric Fourier Coefficients and Complex Fourier Coefficients Relationship</label>
+      <label><input type="checkbox" class="ch4"> Summary</label>
+    </div>
+  </div>
+
+  <div class="chapter">
+    <label><input type="checkbox" class="chapter-check" data-group="ch5"> <strong>Chapter 5: Laplace Transform</strong></label>
+    <div class="subtopics">
+      <label><input type="checkbox" class="ch5"> Introduction</label>
+      <label><input type="checkbox" class="ch5"> Unilateral Laplace Transform</label>
+      <label><input type="checkbox" class="ch5"> Properties of the Unilateral Laplace Transform</label>
+      <label><input type="checkbox" class="ch5"> Inverse Laplace Transform</label>
+      <label><input type="checkbox" class="ch5"> Applications of Laplace Transform</label>
+      <label><input type="checkbox" class="ch5"> Summary</label>
+    </div>
+  </div>
 
   <script>
-    const data = [
-      {
-        title: "1. METHOD OF INTEGRATION",
-        id: "topic1",
-        children: [
-          "1.1 Integration by Parts",
-          "1.2 Integration of Trigonometric Functions",
-          "1.3 Integration of Trigonometric Substitution",
-          "1.4 Integration of Rational Function",
-          "Exercise"
-        ]
-      },
-      {
-        title: "2. FUNCTION OF TWO VARIABLES",
-        id: "topic2",
-        children: [
-          "2.1 Introduction",
-          "2.2 Function of Two Variables",
-          "2.3 Partial Derivatives",
-          "2.4 Rule of Partial Derivative",
-          "2.5 Higher Order Partial Derivative",
-          "2.6 Application of Partial Derivative",
-          " 2.6.1 Implicit Function of Two Variables and Its Application",
-          " 2.6.2 Total Differential",
-          " 2.6.3 Chain Rule and Its Application",
-          " 2.6.4 Extremum of Function",
-          "Exercise"
-        ]
-      },
-      {
-        title: "3. DIFFERENTIAL EQUATIONS",
-        id: "topic3",
-        children: [
-          "3.1 First Order Differential Equation",
-          " 3.1.1 Separable Equation",
-          " 3.1.2 Linear Equation",
-          "3.2 Application of First Order Separable Equation",
-          " 3.2.1 Population Growth",
-          " 3.2.2 Newton’s Law of Cooling",
-          "3.3 Application of First Order Linear Equation",
-          " 3.3.1 Electric Circuit",
-          " 3.3.2 Mixing Problems",
-          "Exercise"
-        ]
-      }
-    ];
+    const chapterChecks = document.querySelectorAll('.chapter-check');
 
-    function saveToStorage() {
-      const checkboxes = document.querySelectorAll('input[type=checkbox]');
-      const saved = {};
-      checkboxes.forEach(cb => {
-        saved[cb.id] = cb.checked;
+    chapterChecks.forEach(chk => {
+      const group = chk.dataset.group;
+      const subChecks = document.querySelectorAll(`input.${group}`);
+
+      // Bila klik pada checkbox besar
+      chk.addEventListener('change', () => {
+        subChecks.forEach(c => c.checked = chk.checked);
       });
-      localStorage.setItem("topicChecklist", JSON.stringify(saved));
-    }
 
-    function loadFromStorage() {
-      const saved = JSON.parse(localStorage.getItem("topicChecklist")) || {};
-      Object.entries(saved).forEach(([id, checked]) => {
-        const cb = document.getElementById(id);
-        if (cb) cb.checked = checked;
-      });
-    }
-
-    function resetChecklist() {
-      localStorage.removeItem("topicChecklist");
-      document.querySelectorAll('input[type=checkbox]').forEach(cb => cb.checked = false);
-    }
-
-    function renderTopics() {
-      const container = document.getElementById("topic-list");
-
-      data.forEach((topic, i) => {
-        const section = document.createElement("div");
-        section.className = "mb-4";
-
-        const parentId = `parent-${topic.id}`;
-        section.innerHTML += `
-          <div class="form-check">
-            <input class="form-check-input parent-checkbox" type="checkbox" id="${parentId}">
-            <label class="form-check-label fw-bold" for="${parentId}">
-              ${topic.title}
-            </label>
-          </div>
-        `;
-
-        topic.children.forEach((child, j) => {
-          const childId = `${topic.id}-sub-${j}`;
-          section.innerHTML += `
-            <div class="form-check ms-4">
-              <input class="form-check-input child-checkbox" type="checkbox" id="${childId}" data-parent="${parentId}">
-              <label class="form-check-label" for="${childId}">
-                ${child}
-              </label>
-            </div>
-          `;
-        });
-
-        container.appendChild(section);
-      });
-    }
-
-    function setupListeners() {
-      document.querySelectorAll(".child-checkbox").forEach(cb => {
-        cb.addEventListener("change", () => {
-          const parentId = cb.dataset.parent;
-          const parent = document.getElementById(parentId);
-          const siblings = document.querySelectorAll(`input[data-parent="${parentId}"]`);
-          const allChecked = Array.from(siblings).every(c => c.checked);
-          parent.checked = allChecked;
-          saveToStorage();
+      // Bila klik pada mana-mana checkbox kecil
+      subChecks.forEach(c => {
+        c.addEventListener('change', () => {
+          const allChecked = Array.from(subChecks).every(c => c.checked);
+          chk.checked = allChecked;
         });
       });
-
-      document.querySelectorAll(".parent-checkbox").forEach(parent => {
-        parent.addEventListener("change", () => {
-          const children = document.querySelectorAll(`input[data-parent="${parent.id}"]`);
-          children.forEach(c => c.checked = parent.checked);
-          saveToStorage();
-        });
-      });
-    }
-
-    function toggleDarkMode() {
-      const body = document.body;
-      const btn = document.getElementById("darkModeBtn");
-      const isDark = body.classList.toggle("dark-mode");
-      localStorage.setItem("darkMode", isDark);
-      btn.innerText = isDark ? "☀️" : "🌙";
-    }
-
-    function loadDarkMode() {
-      const isDark = localStorage.getItem("darkMode") === "true";
-      if (isDark) {
-        document.body.classList.add("dark-mode");
-        document.getElementById("darkModeBtn").innerText = "☀️";
-      }
-    }
-
-    // Init
-    renderTopics();
-    loadFromStorage();
-    setupListeners();
-    loadDarkMode();
+    });
   </script>
 
 </body>
